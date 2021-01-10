@@ -1,24 +1,27 @@
+from collections import deque
+
 tc = int(input())
 
 for _ in range(tc):
-    # lStack Cursor rStack 구조로 문자를 하나씩 좌우이동
-    lStack = []
-    rStack = []  # insert(0) 연산 사용하지 않기 위해 Heap 대신 Stack 사용
+    # left Cursor right 구조로 문자를 하나씩 좌우이동
+
+    left = deque()
+    right = deque()
 
     string = input()
 
     for s in string:
         if s == '<':
-            if lStack:
-                rStack.append(lStack.pop())
+            if left:
+                right.appendleft(left.pop())
         elif s == '>':
-            if rStack:
-                lStack.append(rStack.pop())
+            if right:
+                left.append(right.popleft())
         elif s == '-':
-            if lStack:
-                lStack.pop()
+            if left:
+                left.pop()
         else:
-            lStack.append(s)
+            left.append(s)
 
-    lStack.extend(reversed(rStack))  # 마지막에 rStack 뒤집기
-    print(''.join(lStack))
+    left.extend(right)
+    print(''.join(left))
