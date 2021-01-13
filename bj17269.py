@@ -6,16 +6,16 @@ alpha = {'A': 3, 'B': 2, 'C': 1, 'D': 2, 'E': 4, 'F': 3, 'G': 1, 'H': 3, 'I': 1,
 
 
 # 알파벳 번걸아 적고 숫자로 변환
-alphaToNum = ''
+AB = ''
 min_len = min(N, M)
 for i in range(min_len):
-    alphaToNum += A[i] + B[i]
+    AB += A[i] + B[i]
 
-alphaToNum += A[min_len:] + B[min_len:]
+AB += A[min_len:] + B[min_len:]
 
 result = []
-for i in range(len(alphaToNum)):
-    result.append(alpha[alphaToNum[i]])
+for i in range(len(AB)):
+    result.append(alpha[AB[i]])
 
 
 # 숫자가 2개 남을 때까지 2개씩 더하기
