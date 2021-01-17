@@ -19,7 +19,8 @@ def BFS(v):
             print(v, end=' ')
 
             for dest in adj[v]:
-                if not visited[dest] and dest not in q:
+                if not visited[dest]:
+                    visited[v] = True
                     q.append(dest)
 
 
@@ -31,7 +32,6 @@ for _ in range(M):
     adj[v1].append(v2)
     adj[v2].append(v1)
 
-print(adj)
 
 # 방문가능한 정점이 여러개일 경우 정점번호가 작은 것부터 먼저 방문하기 위해
 for dest in adj:
