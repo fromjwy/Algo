@@ -12,16 +12,16 @@ def DFS(v):
 
 def BFS(v):
     q = deque([v])
-    while q:
-        v = q.popleft()
-        if not visited[v]:
-            visited[v] = True
-            print(v, end=' ')
+    visited[v] = True
 
-            for dest in adj[v]:
-                if not visited[dest]:
-                    visited[v] = True
-                    q.append(dest)
+    while q:
+        tmp = q.popleft()
+        print(tmp, end=' ')
+
+        for dest in adj[tmp]:
+            if not visited[dest]:
+                visited[dest] = True
+                q.append(dest)
 
 
 N, M, V = map(int, input().split())
