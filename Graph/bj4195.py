@@ -1,10 +1,10 @@
-def find(x):
-    if x == parents[x]:
-        return x
+def find(v):
+    if v == parents[v]:
+        return v
     else:
-        parent = find(parents[x])
-        parents[x] = parent
-        return parents[x]
+        new_parent = find(parents[v])
+        parents[v] = new_parent
+        return parents[v]
 
 
 def union(x, y):
@@ -21,13 +21,13 @@ tc = int(input())
 for _ in range(tc):
     F = int(input())
 
-    parents = dict()
+    parents = dict()  # me:parent
     network = dict()
 
     for _ in range(F):
         x, y = input().split()
 
-        # 처음엔 자기 자신을 부모로 초기화
+        # 처음 등장하는 친구인 경우 부모를 자기 자신으로 초기화
         if x not in parents:
             parents[x] = x
             network[x] = 1
