@@ -1,39 +1,14 @@
-def solve(n, x, y):
-    global result
-    if n == 2:
-        if x == X and y == Y:
-            print(result)
-            return
-        result += 1
-        if x == X and y+1 == Y:
-            print(result)
-            return
-        result += 1
-        if x+1 == X and y == Y:
-            print(result)
-            return
-        result += 1
-        if x+1 == X and y+1 == Y:
-            print(result)
-            return
-        result += 1
+def Z(size, x, y):
+    if size == 1:
+        return 0
 
-    else:
-        half = n//2
-
-        if x <= X < x+half and y <= Y < y+half:
-            solve(half, x, y)
-        elif x <= X < x+half and y+half <= Y < y+n:
-            result += half**2
-            solve(half, x, y+half)
-        elif x+half <= X < x+n and y <= Y < y+half:
-            result += half**2*2
-            solve(half, x+half, y)
-        elif x+half <= X < x+n and y+half <= Y < y+n:
-            result += half**2*3
-            solve(half, x+half, y+half)
+    size //= 2
+    for i in range(2):
+        for j in range(2):
+            if x < size*(i+1) and y < size*(j+1):
+                return (i*2+j)*size*size + Z(size, x-size*i, y-size*j)
 
 
-N, X, Y = map(int, input().split())
-result = 0
-solve(2**N, 0, 0)
+N, r, c = map(int, input().split())
+
+print(Z(2**N, r, c))
