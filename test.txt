@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 test test test test bye~~
-=======
-test test test testhello
->>>>>>> feature
