@@ -17,7 +17,7 @@ def sumBlock(lst, N):
     return NewList + [0]*(N-len(NewList))
 
 
-def rotate90(OldBoard, N):
+def rotate90(N, OldBoard):
     NewBoard = deepcopy(OldBoard)
     for i in range(N):
         for j in range(N):
@@ -26,20 +26,19 @@ def rotate90(OldBoard, N):
     return NewBoard
 
 
-def move(board, N, cnt):
+def move(N, board, cnt):
     result = max([max(i) for i in board])
     if cnt == 0:
         return result
 
-    # 상하좌우 방향, 같은 블록이 있으면 합쳐서 왼쪽으로 밀기
+    # 상하좌우 방향 각각 같은 블록이 있으면 합쳐서 왼쪽으로 밀기
     for _ in range(4):
         # 보드가 0, 90, 180, 270 회전한 상태에서 왼쪽으로 밀어서 만든 임시
-        tmp = [sumBlock(X, N) for X in board]
-
+        TmpBoard = [sumBlock(X, N) for X in board]
         # 가장 큰 블록 갱신
-        result = max(result, move(tmp, N, cnt-1))
+        result = max(result, move(N, TmpBoard, cnt-1))
         # 보드 회전
-        board = rotate90(board, N)
+        board = rotate90(N, board)
 
     return result
 
