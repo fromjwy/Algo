@@ -1,6 +1,6 @@
 from collections import deque
-#import sys
-# sys.setrecursionlimit(10000)
+import sys
+sys.setrecursionlimit(10000)
 
 N, K = map(int, input().split())
 Map = [list(input()) for _ in range(N)]
@@ -8,6 +8,23 @@ Map = [list(input()) for _ in range(N)]
 dx, dy = [0, -1, 0, 1], [1, 0, -1, 0]
 
 
+def countMooyo(x, y):
+    cnt = 1
+    ck[x][y] = True
+
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
+        if nx < 0 or nx >= N or ny < 0 or ny >= 10:
+            continue
+
+        if ck[nx][ny] or Map[x][y] != Map[nx][ny]:
+            continue
+
+        cnt += countMooyo(nx, ny)
+    return cnt
+
+
+'''
 def countMooyo(x, y):
     cnt = 1
     q1 = deque([(x, y)])
@@ -29,16 +46,33 @@ def countMooyo(x, y):
 
             cnt += 1
     return cnt
+'''
 
 
+def deleteMooyo(x, y, val):
+    Map[x][y] = '0'
+    ck2[x][y] = True
+
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
+        if nx < 0 or nx >= N or ny < 0 or ny >= 10:
+            continue
+
+        if ck2[nx][ny] or Map[nx][ny] != val:
+            continue
+
+        deleteMooyo(nx, ny, val)
+
+
+'''
 def deleteMooyo(x, y, val):
 
     q2 = deque([(x, y)])
     ck2[x][y] = True
 
     while q2:
-        x, y = q2.popleft()
         Map[x][y] = '0'
+        x, y = q2.popleft()
 
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
@@ -50,6 +84,7 @@ def deleteMooyo(x, y, val):
 
             q2.append((nx, ny))
             ck2[nx][ny] = True
+'''
 
 
 def Down():
