@@ -29,12 +29,14 @@ def DFS(idx):
         result.append(copy.deepcopy(string))
     else:
         for i in range(idx, C):
-            if not visited[i]:
-                visited[i] = True
-                string.append(alpha[i])
-                DFS(i+1)
-                visited[i] = False
-                string.pop()
+            if visited[i]:
+                continue
+
+            visited[i] = True
+            string.append(alpha[i])
+            DFS(i+1)
+            visited[i] = False
+            string.pop()
 
 
 DFS(0)
