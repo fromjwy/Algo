@@ -6,7 +6,7 @@ Board = [list(map(int, input().split())) for _ in range(N)]
 result = 0
 
 
-def sumBlock(lst, N):
+def slide(lst, N):
     TmpList = [i for i in lst if i]  # 0이 아닌 숫자들만
     for i in range(1, len(TmpList)):
         if TmpList[i-1] == TmpList[i]:
@@ -34,7 +34,7 @@ def move(N, board, cnt):
     # 상하좌우 방향 각각 같은 블록이 있으면 합쳐서 왼쪽으로 밀기
     for _ in range(4):
         # 보드가 0, 90, 180, 270 회전한 상태에서 왼쪽으로 밀어서 만든 임시
-        TmpBoard = [sumBlock(X, N) for X in board]
+        TmpBoard = [slide(X, N) for X in board]
         # 가장 큰 블록 갱신
         result = max(result, move(N, TmpBoard, cnt-1))
         # 보드 회전

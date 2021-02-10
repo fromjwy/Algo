@@ -4,18 +4,11 @@ def addOp(op, n):
     if len(op) == n:
         op_list.append(copy.deepcopy(op))
         return
-
-    op.append(' ')
-    addOp(op, n)
-    op.pop()
-
-    op.append('+')
-    addOp(op, n)
-    op.pop()
-
-    op.append('-')
-    addOp(op, n)
-    op.pop()
+    
+    for o in [' ', '+', '-']:
+        op.append(o)
+        addOp(op, n)
+        op.pop()
 
 
 tc = int(input())
@@ -26,7 +19,6 @@ for _ in range(tc):
     op_list = []
 
     addOp([], n-1)
-    # print(op_list)
 
     for op in op_list:
         tmp = ""
