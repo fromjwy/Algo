@@ -5,16 +5,21 @@ lst.insert(0, 0)
 visited = [0]*(N+1)
 result = []
 
-# 조합
-def DFS(L, S):
+# 순열
+def DFS(L):
     if L == M:
         print(' '.join(result))
         return
 
-    for i in range(S, N+1):
+    for i in range(1, N+1):
+        if visited[i]:
+            continue
+
         result.append(str(lst[i]))
-        DFS(L+1, i+1)
+        visited[i] = 1
+        DFS(L+1)
         result.pop()
+        visited[i] = 0
 
 
-DFS(0, 1)
+DFS(0)
