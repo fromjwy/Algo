@@ -1,6 +1,6 @@
 from copy import deepcopy
 import sys
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(1000)
 
 N, M, K = map(int, input().split())
 Map = [list(map(int, input().split())) for _ in range(N)]
