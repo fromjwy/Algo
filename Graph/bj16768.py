@@ -1,6 +1,6 @@
 from collections import deque
 import sys
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(1000)
 
 N, K = map(int, input().split())
 Map = [list(input()) for _ in range(N)]

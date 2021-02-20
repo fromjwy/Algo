@@ -5,7 +5,7 @@ Board = [list(map(int, input().split())) for _ in range(N)]
 
 result = 0
 
-
+#같은 값을 갖는 두 블록이 충돌하면 두 블록은 하나로 합쳐지게 된다. 한 번의 이동에서 이미 합쳐진 블록은 또 다른 블록과 다시 합쳐질 수 없다.
 def slide(lst, N):
     TmpList = [i for i in lst if i]  # 0이 아닌 숫자들만
     for i in range(1, len(TmpList)):
@@ -25,7 +25,7 @@ def rotate90(N, OldBoard):
 
     return NewBoard
 
-
+#한 번의 이동은 보드 위에 있는 전체 블록을 상하좌우 네 방향 중 하나로 이동시키는 것이다.
 def move(N, board, cnt):
     result = max([max(i) for i in board])
     if cnt == 0:
@@ -43,5 +43,5 @@ def move(N, board, cnt):
     return result
 
 
-# 한번의 이동 (5번 반복)
+# 5번 이동 후 결과
 print(move(N, Board, 5))

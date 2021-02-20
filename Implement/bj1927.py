@@ -3,17 +3,20 @@ import heapq
 N = int(input())
 heap = []
 result = []
+heapq.heapify(heap)
 
 for _ in range(N):
-    num = int(input())
-    if num == 0:
+    x = int(input())
+    if x == 0:
         if heap:
+            # 배열에서 가장 작은 값을 제거한다.
             result.append(heapq.heappop(heap))
         else:
             result.append(0)
     else:
-        heapq.heappush(heap, num)
+        # 배열에 자연수 x를 넣는다.
+        heapq.heappush(heap, x)
 
 
-for num in result:
-    print(num)
+for x in result:
+    print(x)
