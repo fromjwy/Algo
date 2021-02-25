@@ -2,7 +2,6 @@ N, M = map(int, input().split())
 lst = list(map(int, input().split()))
 lst = sorted(lst)
 lst.insert(0, 0)
-visited = [0]*(N+1)
 result = []
 
 # 중복조합

@@ -1,4 +1,5 @@
 import copy
+from collections import deque
 
 N, M = map(int, input().split())
 Map = [list(map(int, input().split())) for _ in range(N)]
@@ -13,6 +14,8 @@ res = 0
 cnt = 0
 
 # 바이러스 퍼트리기
+
+'''
 def spreadVirus(x, y, tmp):
     for i in range(4):
         nx, ny = x+dx[i], y+dy[i]
@@ -22,7 +25,20 @@ def spreadVirus(x, y, tmp):
         if tmp[nx][ny] == 0:
             tmp[nx][ny] = 2
             spreadVirus(nx, ny, tmp)
+'''
+def spreadVirus(x, y, tmp):
+    q = deque([(x,y)])
 
+    while q:
+        xx,yy = q.popleft()
+        for i in range(4):
+            nx, ny = xx+dx[i], yy+dy[i]
+            if nx < 0 or nx >= N or ny < 0 or ny >= M:
+                continue
+
+            if tmp[nx][ny] == 0:
+                tmp[nx][ny] = 2
+                q.append((nx,ny))
 
 # 벽 3개 세우기
 def wall(start, cnt):
@@ -43,8 +59,9 @@ def wall(start, cnt):
         c = i % M
         if Map[r][c] == 0:
             Map[r][c] = 1
-            wall(i, cnt+1)
+            wall(i+1, cnt+1)
             Map[r][c] = 0
+
 
 # 바이러스 위치 찾기
 for x in range(N):
